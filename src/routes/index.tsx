@@ -17,7 +17,7 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
-      { rel: "stylesheet", href: "/css/style.css" },
+      { rel: "stylesheet", href: "/css/style.css?v=3" },
       { rel: "icon", type: "image/svg+xml", href: "/assets/icons/favicon.svg" },
     ],
   }),
@@ -30,7 +30,7 @@ function Index() {
     if (document.getElementById("cafe-main-js")) return;
     const s = document.createElement("script");
     s.id = "cafe-main-js";
-    s.src = "/js/main.js";
+    s.src = "/js/main.js?v=3";
     s.onload = () => {
       if (document.readyState === "complete") window.dispatchEvent(new Event("load"));
     };
