@@ -1,0 +1,61 @@
+name: Deploy static site to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Prepare static site
+        run: node scripts/prepare-pages.mjs
+
+      - name: Verify static output
+        run: |
+          test -s pages/index.html
+          test -s pages/404.html
+          test -s pages/css/style.css
+          test -s pages/js/main.js
+          test -s pages/assets/icons/favicon.svg
+          ! grep -R '/__l5e/assets-v1/' pages
+          ! grep -R "fetch('/api/public/" pages
+          echo "Static output checks passed."
+
+      - name: Upload Pages artifact
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: pages
+
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
