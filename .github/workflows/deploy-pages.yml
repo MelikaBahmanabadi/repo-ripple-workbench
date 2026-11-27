@@ -39,6 +39,8 @@ jobs:
           test -s pages/js/main.js
           test -s pages/assets/icons/favicon.svg
           ! grep -R '/__l5e/assets-v1/' pages
+          ! grep -R '../assets/fonts/' pages/css
+          grep -q 'Cormorant+Garamond' pages/index.html
           ! grep -R "fetch('/api/public/" pages
           echo "Static output checks passed."
 
