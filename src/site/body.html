@@ -28,7 +28,7 @@
     <a href="#menu" data-nav>The Menu</a>
     <a href="#gallery" data-nav>Gallery</a>
     <a href="#visit" data-nav>Visit</a>
-    <a href="#menu" class="nav-cta" data-nav>Reserve a Table</a>
+    <button type="button" class="nav-cta" data-reserve><span class="nav-cta-dot"></span>Reserve a Table</button>
   </nav>
   <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
     <span></span><span></span><span></span>
@@ -42,7 +42,7 @@
     <a href="#menu"><span>02</span>The Menu</a>
     <a href="#gallery"><span>03</span>Gallery</a>
     <a href="#visit"><span>04</span>Visit</a>
-    <a href="#menu" class="mobile-cta">Reserve a Table</a>
+    <a href="#reserve" class="mobile-cta" data-reserve>Reserve a Table</a>
   </nav>
   <div class="mobile-meta">
     <p>218 Birchwood Lane, Suite 4<br>Portland, OR 97204</p>
@@ -216,7 +216,7 @@
             <div><h5>Contact</h5><p><a href="mailto:reservations@emberandoak.co">reservations@emberandoak.co</a><br>Reservations &amp; private events</p></div>
           </div>
         </div>
-        <a href="mailto:reservations@emberandoak.co" class="btn btn-solid" data-reveal>Reserve a Table
+        <a href="#reserve" class="btn btn-solid" data-reveal data-reserve>Reserve a Table
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
@@ -332,3 +332,49 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<!-- ============ RESERVATION ============ -->
+<div class="rsv" id="rsv" aria-hidden="true">
+  <div class="rsv-backdrop" data-rsv-close></div>
+  <div class="rsv-panel" role="dialog" aria-modal="true" aria-labelledby="rsvTitle">
+    <button type="button" class="rsv-x" data-rsv-close aria-label="Close">×</button>
+    <div class="rsv-steps"><span class="on">1 · Table</span><span>2 · Details</span><span>3 · Done</span></div>
+    <form id="rsvForm" novalidate>
+      <section class="rsv-step on" data-step="1">
+        <h3 id="rsvTitle">Reserve your table</h3>
+        <p class="rsv-sub">Pick a day, a time and how many of you are coming.</p>
+        <label>Guests</label>
+        <div class="rsv-guests" id="rsvGuests"><button type="button" data-g="1" class="">1</button><button type="button" data-g="2" class="on">2</button><button type="button" data-g="3" class="">3</button><button type="button" data-g="4" class="">4</button><button type="button" data-g="5" class="">5</button><button type="button" data-g="6" class="">6</button><button type="button" data-g="7" class="">7</button><button type="button" data-g="8" class="">8</button><button type="button" data-g="10">9–12</button></div>
+        <input type="hidden" name="party_size" value="2">
+        <div class="rsv-row">
+          <div><label for="rsvDate">Date</label><input id="rsvDate" type="date" name="reservation_date" required></div>
+          <div><label for="rsvTime">Time</label><select id="rsvTime" name="reservation_time"><option>07:00</option><option>07:30</option><option>08:00</option><option>08:30</option><option>09:00</option><option>09:30</option><option>10:00</option><option>10:30</option><option>11:00</option><option>11:30</option><option>12:00</option><option>12:30</option><option>13:00</option><option>13:30</option><option>14:00</option><option>14:30</option><option>15:00</option><option>15:30</option><option>16:00</option><option>16:30</option><option>17:00</option><option>17:30</option><option selected>18:00</option><option>18:30</option><option>19:00</option><option>19:30</option><option>20:00</option></select></div>
+        </div>
+        <label>Where would you like to sit?</label>
+        <div class="rsv-chips" data-name="area"><button type="button" data-v="Main hall" class="on">Main hall</button><button type="button" data-v="Lounge" class="">Lounge</button><button type="button" data-v="Terrace" class="">Terrace</button><button type="button" data-v="Private room" class="">Private room</button></div>
+        <input type="hidden" name="area" value="Main hall">
+        <button type="button" class="rsv-next" data-go="2">Continue</button>
+      </section>
+      <section class="rsv-step" data-step="2">
+        <h3>Your details</h3>
+        <p class="rsv-sub" id="rsvSummary"></p>
+        <div class="rsv-row">
+          <div><label for="rsvName">Full name</label><input id="rsvName" name="full_name" required maxlength="100" autocomplete="name"></div>
+          <div><label for="rsvPhone">Phone</label><input id="rsvPhone" name="phone" type="tel" required maxlength="20" autocomplete="tel"></div>
+        </div>
+        <label for="rsvEmail">Email (optional)</label><input id="rsvEmail" name="email" type="email" maxlength="255" autocomplete="email">
+        <label>Occasion</label>
+        <div class="rsv-chips" data-name="occasion"><button type="button" data-v="None" class="on">None</button><button type="button" data-v="Birthday" class="">Birthday</button><button type="button" data-v="Anniversary" class="">Anniversary</button><button type="button" data-v="Business" class="">Business</button><button type="button" data-v="Date night" class="">Date night</button><button type="button" data-v="Other" class="">Other</button></div>
+        <input type="hidden" name="occasion" value="None">
+        <label for="rsvNotes">Notes (optional)</label><textarea id="rsvNotes" name="notes" maxlength="500" rows="2" placeholder="Allergies, high chair, cake…"></textarea>
+        <p class="rsv-err" id="rsvErr" role="alert"></p>
+        <div class="rsv-actions"><button type="button" class="rsv-back" data-go="1">Back</button><button type="submit" class="rsv-next" id="rsvSubmit">Confirm reservation</button></div>
+      </section>
+      <section class="rsv-step rsv-done" data-step="3">
+        <div class="rsv-check"><svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24"/><path d="M15 27l7 7 15-15"/></svg></div>
+        <h3>Your table is requested</h3>
+        <p class="rsv-sub" id="rsvDoneText"></p>
+        <button type="button" class="rsv-next" data-rsv-close>Done</button>
+      </section>
+    </form>
+  </div>
+</div>

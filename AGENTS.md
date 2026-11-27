@@ -29,3 +29,4 @@ use the editor.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
 - The cafe site (imported from GitHub MelikaBahmanabadi/cafe) is served as original static HTML/CSS/JS: markup in src/site/body.html, styles/script/assets in public/; why: faithful 1:1 port of a plain static site.
+- Reservations are posted by public/js/main.js to the server route /api/public/reservations, which validates with src/lib/reservation.ts and inserts via the admin client; the table has RLS on with no public policies so visitors can never read bookings.

@@ -407,3 +407,54 @@
     // if autoplay blocked, show poster stays — nothing else needed
   }
 })();
+
+/* ---------- Reservation flow ---------- */
+(() => {
+  const m = document.getElementById('rsv'); if (!m) return;
+  const form = document.getElementById('rsvForm');
+  const steps = [...m.querySelectorAll('.rsv-step')], pills = [...m.querySelectorAll('.rsv-steps span')];
+  const date = document.getElementById('rsvDate');
+  const iso = d => d.toISOString().slice(0, 10);
+  const today = new Date(); const max = new Date(Date.now() + 60 * 864e5);
+  date.min = iso(today); date.max = iso(max); date.value = iso(today);
+  const go = n => { steps.forEach(s => s.classList.toggle('on', s.dataset.step == n)); pills.forEach((p, i) => p.classList.toggle('on', i === n - 1)); };
+  const open = e => { e && e.preventDefault(); go(1); form.reset(); date.value = iso(today); m.querySelectorAll('[data-g],[data-v]').forEach(b => b.classList.toggle('on', ['2','Main hall','None'].includes(b.dataset.g || b.dataset.v))); m.classList.add('open'); m.setAttribute('aria-hidden','false'); document.body.style.overflow = 'hidden'; };
+  const close = () => { m.classList.remove('open'); m.setAttribute('aria-hidden','true'); document.body.style.overflow = ''; };
+  document.querySelectorAll('[data-reserve]').forEach(b => b.addEventListener('click', open));
+  m.querySelectorAll('[data-rsv-close]').forEach(b => b.addEventListener('click', close));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && m.classList.contains('open')) close(); });
+  m.addEventListener('click', e => {
+    const g = e.target.closest('[data-g]');
+    if (g) { m.querySelectorAll('[data-g]').forEach(b => b.classList.remove('on')); g.classList.add('on'); form.party_size.value = g.dataset.g; }
+    const c = e.target.closest('[data-v]');
+    if (c) { const wrap = c.parentElement; wrap.querySelectorAll('button').forEach(b => b.classList.remove('on')); c.classList.add('on'); form[wrap.dataset.name].value = c.dataset.v; }
+    const nx = e.target.closest('[data-go]');
+    if (nx) {
+      if (nx.dataset.go === '2') {
+        if (!date.value || date.value < date.min || date.value > date.max) { date.classList.add('invalid'); return; }
+        date.classList.remove('invalid');
+        const d = new Date(date.value + 'T00:00:00');
+        document.getElementById('rsvSummary').textContent = `${form.party_size.value === '10' ? '9–12' : form.party_size.value} guests · ${d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })} · ${form.reservation_time.value} · ${form.area.value}`;
+      }
+      go(+nx.dataset.go);
+    }
+  });
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const err = document.getElementById('rsvErr'), btn = document.getElementById('rsvSubmit');
+    let bad = false;
+    [form.full_name, form.phone].forEach(i => { const ok = i.value.trim().length >= (i === form.phone ? 7 : 2); i.classList.toggle('invalid', !ok); bad ||= !ok; });
+    if (bad) { err.textContent = 'Please add your name and phone number.'; return; }
+    err.textContent = ''; btn.disabled = true; btn.textContent = 'Booking…';
+    const data = Object.fromEntries(new FormData(form));
+    data.party_size = Number(data.party_size);
+    try {
+      const r = await fetch('/api/public/reservations', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+      const j = await r.json();
+      if (!r.ok) throw new Error(j.error || 'Something went wrong.');
+      document.getElementById('rsvDoneText').textContent = `Thank you, ${data.full_name.split(' ')[0]}! ${document.getElementById('rsvSummary').textContent}. We'll call you at ${data.phone} to confirm.`;
+      go(3);
+    } catch (x) { err.textContent = x.message || 'Could not send. Please try again.'; }
+    finally { btn.disabled = false; btn.textContent = 'Confirm reservation'; }
+  });
+})();
