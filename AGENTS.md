@@ -28,3 +28,4 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+- The cafe site (imported from GitHub MelikaBahmanabadi/cafe) is served as original static HTML/CSS/JS: markup in src/site/body.html, styles/script/assets in public/; why: faithful 1:1 port of a plain static site.

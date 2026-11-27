@@ -1,23 +1,40 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect } from "react";
+import bodyHtml from "@/site/body.html?raw";
 
-// The home route ships no og:image, so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const title = "Ember & Oak — Specialty Coffee House | A Moment of Calm, in Every Cup";
+const description =
+  "Ember & Oak is a specialty coffee house in Portland. Cinematically crafted espresso, slow mornings and a warm place to stay a while.";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [
+      { rel: "stylesheet", href: "/css/style.css" },
+      { rel: "icon", type: "image/svg+xml", href: "/assets/icons/favicon.svg" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+  useEffect(() => {
+    // The original site script expects the page markup to already exist; load it once after mount.
+    if (document.getElementById("cafe-main-js")) return;
+    const s = document.createElement("script");
+    s.id = "cafe-main-js";
+    s.src = "/js/main.js";
+    s.onload = () => {
+      if (document.readyState === "complete") window.dispatchEvent(new Event("load"));
+    };
+    document.body.appendChild(s);
+  }, []);
+  return <div dangerouslySetInnerHTML={{ __html: bodyHtml }} />;
 }
