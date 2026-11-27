@@ -526,3 +526,32 @@ em{font-family:var(--serif);font-style:italic}
   .hero-video{transform:none}
   .cursor-glow{display:none}
 }
+
+/* ---------- Product photos on white + ingredients pour ---------- */
+.menu-card-img{background:#fff}
+.menu-card-img img{object-fit:contain;padding:6%}
+.menu-card-img::after{background:none}
+.ing-btn{font:inherit;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--caramel);background:none;border:1px solid rgba(184,116,44,.4);border-radius:999px;padding:.4rem .8rem;cursor:pointer;transition:background .3s,color .3s}
+.ing-btn:hover{background:var(--caramel);color:#fff}
+.ing-panel{position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center;gap:1.4rem;background:rgba(255,255,255,.94);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .45s var(--ease)}
+.menu-card.show-ing .ing-panel{opacity:1}
+.ing-vessel{position:relative;width:78px;height:104px;border:3px solid #3b2a1e;border-top:none;border-radius:0 0 22px 22px;overflow:visible}
+.ing-vessel::after{content:'';position:absolute;right:-20px;top:18px;width:18px;height:40px;border:3px solid #3b2a1e;border-left:none;border-radius:0 16px 16px 0}
+.ing-vessel.is-glass{border-radius:0 0 8px 8px;width:66px;height:118px}
+.ing-vessel.is-glass::after,.ing-vessel.is-plate::after{display:none}
+.ing-vessel.is-plate{width:110px;height:70px;border:none;border-bottom:4px solid #3b2a1e;border-radius:0}
+.ing-fill{position:absolute;inset:0;display:flex;flex-direction:column-reverse;overflow:hidden;border-radius:inherit}
+.ing-layer{display:block;height:0;background:var(--c);flex:none}
+.is-plate .ing-fill{inset:auto 12px 0;height:100%;border-radius:40px 40px 0 0}
+.menu-card.show-ing .ing-layer{animation:ingFill .7s cubic-bezier(.3,.8,.4,1) forwards;animation-delay:calc(.25s + var(--j) * .55s)}
+@keyframes ingFill{to{height:var(--h)}}
+.ing-stream{position:absolute;left:50%;top:-34px;width:5px;height:0;margin-left:-2.5px;border-radius:3px;background:var(--caramel)}
+.is-plate .ing-stream{display:none}
+.menu-card.show-ing .ing-stream{animation:ingStream 1.4s ease forwards;animation-delay:.1s}
+@keyframes ingStream{0%{height:0;opacity:1}30%{height:110px;opacity:1}85%{height:110px;opacity:1}100%{height:110px;opacity:0;top:76px}}
+.ing-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.4rem;font-size:.78rem;color:var(--espresso)}
+.ing-list li{display:flex;align-items:center;gap:.5rem;opacity:0;transform:translateX(10px)}
+.ing-list i{width:12px;height:12px;border-radius:50%;border:1px solid rgba(0,0,0,.15)}
+.menu-card.show-ing .ing-list li{animation:ingItem .45s ease forwards;animation-delay:calc(.35s + var(--j) * .55s)}
+@keyframes ingItem{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.menu-card.show-ing .ing-layer{animation:none;height:var(--h)}.menu-card.show-ing .ing-list li{animation:none;opacity:1;transform:none}.ing-stream{display:none}}

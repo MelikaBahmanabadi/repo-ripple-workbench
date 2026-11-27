@@ -184,30 +184,30 @@
 
   /* ---------- Menu ---------- */
   const PRODUCTS = [
-    { id: 1,  name: 'Classic Espresso',       cat: 'espresso',   price: 3.5,  rating: 4.9, tag: 'Strong',        img: 'assets/images/products/espresso.jpg',             desc: 'Bold single-origin shot, thick crema, notes of cocoa and toasted hazelnut.' },
-    { id: 2,  name: 'Double Espresso',        cat: 'espresso',   price: 4.0,  rating: 4.8, tag: 'Bold',          img: 'assets/images/products/double-espresso.jpg',      desc: 'Two shots pulled short and intense. For those who like it dark.' },
-    { id: 3,  name: 'Americano',              cat: 'espresso',   price: 3.8,  rating: 4.7, tag: 'Smooth',        img: 'assets/images/products/americano.jpg',            desc: 'Espresso lengthened with hot water. Clean, balanced, infinitely drinkable.' },
-    { id: 4,  name: 'Macchiato',              cat: 'espresso',   price: 4.2,  rating: 4.8, tag: 'Classic',       img: 'assets/images/products/macchiato.jpg',            desc: 'Espresso marked with a dollop of foamed milk. Small, intense, perfect.' },
-    { id: 5,  name: 'Cappuccino',             cat: 'cappuccino', price: 4.5,  rating: 4.9, tag: 'House Classic', img: 'assets/images/products/cappuccino.jpg',           desc: 'Equal thirds espresso, steamed milk and airy foam, dusted with cocoa.' },
-    { id: 6,  name: 'Iced Cappuccino',        cat: 'cappuccino', price: 4.8,  rating: 4.7, tag: 'Cold',          img: 'assets/images/products/iced-cappuccino.jpg',      desc: 'Chilled espresso over ice with cold foam and a dusting of cocoa.' },
-    { id: 7,  name: 'Caramel Cappuccino',     cat: 'cappuccino', price: 5.0,  rating: 4.8, tag: 'Sweet',         img: 'assets/images/products/caramel-cappuccino.jpg',   desc: 'House caramel folded into foam, finished with flaky sea salt.' },
-    { id: 8,  name: 'Vanilla Latte',          cat: 'latte',      price: 4.8,  rating: 4.9, tag: 'Popular',       img: 'assets/images/products/vanilla-latte.jpg',        desc: 'Madagascar bourbon vanilla, double shot, silky steamed milk.' },
-    { id: 9,  name: 'Iced Latte',             cat: 'latte',      price: 4.5,  rating: 4.7, tag: 'Cold',          img: 'assets/images/products/iced-latte.jpg',           desc: 'Espresso, cold milk, ice. Simple, balanced, refreshing.' },
-    { id: 10, name: 'Hazelnut Latte',         cat: 'latte',      price: 5.0,  rating: 4.8, tag: 'Nutty',         img: 'assets/images/products/hazelnut-latte.jpg',       desc: 'Roasted hazelnut praline, espresso and a swirl of cream over latte art.' },
-    { id: 11, name: 'Chai Latte',             cat: 'latte',      price: 4.9,  rating: 4.6, tag: 'Spiced',        img: 'assets/images/products/chai-latte.jpg',           desc: 'House-blend black tea, cardamom, cinnamon, clove, steamed milk.' },
-    { id: 12, name: 'Flat White',             cat: 'flatwhite',  price: 4.6,  rating: 4.8, tag: 'Smooth',        img: 'assets/images/products/flat-white.jpg',           desc: 'Double ristretto under thin microfoam. Australasian classic, perfectly poured.' },
-    { id: 13, name: 'Cortado',                cat: 'flatwhite',  price: 4.4,  rating: 4.7, tag: 'Balanced',      img: 'assets/images/products/cortado.jpg',              desc: 'Espresso cut with warm milk in equal measure. Small but mighty.' },
-    { id: 14, name: 'Matcha Latte',           cat: 'matcha',     price: 5.2,  rating: 4.8, tag: 'Ceremonial',    img: 'assets/images/products/matcha-latte.jpg',         desc: 'Stone-ground ceremonial matcha whisked with steamed milk.' },
-    { id: 15, name: 'Iced Matcha',            cat: 'matcha',     price: 5.4,  rating: 4.7, tag: 'Cold',          img: 'assets/images/products/iced-matcha.jpg',          desc: 'Matcha shaken with ice and milk. Vibrant green, gently sweet.' },
-    { id: 16, name: 'Matcha Cloud',           cat: 'matcha',     price: 5.8,  rating: 4.9, tag: 'Signature',     img: 'assets/images/products/matcha-cloud.jpg',         desc: 'Matcha, espresso, brown sugar and cold foam. A dual-layered wonder.' },
-    { id: 17, name: 'Honey Lavender Latte',   cat: 'signature',  price: 6.2,  rating: 5.0, tag: "Barista's Choice", img: 'assets/images/products/honey-lavender-latte.jpg', desc: 'Wildflower honey, French lavender, double shot, oat milk.' },
-    { id: 18, name: 'Brown Sugar Shaken',     cat: 'signature',  price: 6.0,  rating: 4.9, tag: 'Hand-Shaken',   img: 'assets/images/products/brown-sugar-shaken.jpg',   desc: 'Brown sugar syrup shaken with espresso and cinnamon. Frothy, cool.' },
-    { id: 19, name: 'Spiced Mocha',           cat: 'signature',  price: 6.4,  rating: 4.8, tag: 'Rich',          img: 'assets/images/products/spiced-mocha.jpg',         desc: '70% dark chocolate, espresso, a whisper of chili, steamed milk.' },
-    { id: 20, name: 'House Blend Pour Over',  cat: 'signature',  price: 5.5,  rating: 4.9, tag: 'Slow Brew',     img: 'assets/images/products/pour-over.jpg',            desc: 'Single origin, hand-poured bloom by bloom. Three minutes of patience.' },
-    { id: 21, name: 'Butter Croissant',       cat: 'desserts',   price: 3.8,  rating: 4.9, tag: 'Baked Daily',   img: 'assets/images/products/croissant.jpg',            desc: '72-hour laminated dough, baked until shatteringly flaky.' },
-    { id: 22, name: 'Pain au Chocolat',       cat: 'desserts',   price: 4.2,  rating: 4.8, tag: 'Two Bars',      img: 'assets/images/products/pain-chocolat.jpg',        desc: 'Same croissant dough, two batons of 70% dark chocolate inside.' },
-    { id: 23, name: 'Almond Danish',          cat: 'desserts',   price: 4.5,  rating: 4.7, tag: 'Frangipane',    img: 'assets/images/products/almond-danish.jpg',        desc: 'Frangipane cream, toasted almonds, light glaze. French-style.' },
-    { id: 24, name: 'Tiramisu',               cat: 'desserts',   price: 6.0,  rating: 4.9, tag: 'House-Made',    img: 'assets/images/products/tiramisu.jpg',             desc: 'Espresso-soaked ladyfingers, mascarpone, dark cocoa dust.' },
+    { id: 1,  name: 'Classic Espresso',       cat: 'espresso',   price: 3.5,  rating: 4.9, tag: 'Strong',        img: '/__l5e/assets-v1/550fd311-d717-4956-a2e4-8e0de333e240/espresso.jpg',             desc: 'Bold single-origin shot, thick crema, notes of cocoa and toasted hazelnut.' },
+    { id: 2,  name: 'Double Espresso',        cat: 'espresso',   price: 4.0,  rating: 4.8, tag: 'Bold',          img: '/__l5e/assets-v1/97f08f0f-0716-44a0-9ffa-90e785420826/double-espresso.jpg',      desc: 'Two shots pulled short and intense. For those who like it dark.' },
+    { id: 3,  name: 'Americano',              cat: 'espresso',   price: 3.8,  rating: 4.7, tag: 'Smooth',        img: '/__l5e/assets-v1/28239b5d-a046-4355-8fc4-256694204442/americano.jpg',            desc: 'Espresso lengthened with hot water. Clean, balanced, infinitely drinkable.' },
+    { id: 4,  name: 'Macchiato',              cat: 'espresso',   price: 4.2,  rating: 4.8, tag: 'Classic',       img: '/__l5e/assets-v1/0032af91-cd8e-4dfb-b665-aebef113a17c/macchiato.jpg',            desc: 'Espresso marked with a dollop of foamed milk. Small, intense, perfect.' },
+    { id: 5,  name: 'Cappuccino',             cat: 'cappuccino', price: 4.5,  rating: 4.9, tag: 'House Classic', img: '/__l5e/assets-v1/9af23558-0219-4408-865d-b0d15f50ae97/cappuccino.jpg',           desc: 'Equal thirds espresso, steamed milk and airy foam, dusted with cocoa.' },
+    { id: 6,  name: 'Iced Cappuccino',        cat: 'cappuccino', price: 4.8,  rating: 4.7, tag: 'Cold',          img: '/__l5e/assets-v1/79711ded-edcc-416c-af7f-495703a9097f/iced-cappuccino.jpg',      desc: 'Chilled espresso over ice with cold foam and a dusting of cocoa.' },
+    { id: 7,  name: 'Caramel Cappuccino',     cat: 'cappuccino', price: 5.0,  rating: 4.8, tag: 'Sweet',         img: '/__l5e/assets-v1/4e17a114-1608-46c3-a874-fdc34df6fb8d/caramel-cappuccino.jpg',   desc: 'House caramel folded into foam, finished with flaky sea salt.' },
+    { id: 8,  name: 'Vanilla Latte',          cat: 'latte',      price: 4.8,  rating: 4.9, tag: 'Popular',       img: '/__l5e/assets-v1/c1d54c17-0ff4-4c73-bf0c-ea83932dcafd/vanilla-latte.jpg',        desc: 'Madagascar bourbon vanilla, double shot, silky steamed milk.' },
+    { id: 9,  name: 'Iced Latte',             cat: 'latte',      price: 4.5,  rating: 4.7, tag: 'Cold',          img: '/__l5e/assets-v1/ab2889ed-c24e-4ea8-ad97-ea9efb384142/iced-latte.jpg',           desc: 'Espresso, cold milk, ice. Simple, balanced, refreshing.' },
+    { id: 10, name: 'Hazelnut Latte',         cat: 'latte',      price: 5.0,  rating: 4.8, tag: 'Nutty',         img: '/__l5e/assets-v1/4cb2bc42-479b-404b-916d-068db2bc8a7b/hazelnut-latte.jpg',       desc: 'Roasted hazelnut praline, espresso and a swirl of cream over latte art.' },
+    { id: 11, name: 'Chai Latte',             cat: 'latte',      price: 4.9,  rating: 4.6, tag: 'Spiced',        img: '/__l5e/assets-v1/928a67be-ea38-4a34-9439-4fa5006d9b71/chai-latte.jpg',           desc: 'House-blend black tea, cardamom, cinnamon, clove, steamed milk.' },
+    { id: 12, name: 'Flat White',             cat: 'flatwhite',  price: 4.6,  rating: 4.8, tag: 'Smooth',        img: '/__l5e/assets-v1/df917100-166b-41c7-8570-0e0f4d664302/flat-white.jpg',           desc: 'Double ristretto under thin microfoam. Australasian classic, perfectly poured.' },
+    { id: 13, name: 'Cortado',                cat: 'flatwhite',  price: 4.4,  rating: 4.7, tag: 'Balanced',      img: '/__l5e/assets-v1/b25f2797-3f9a-4bf8-9a7c-31e86a3ab3f8/cortado.jpg',              desc: 'Espresso cut with warm milk in equal measure. Small but mighty.' },
+    { id: 14, name: 'Matcha Latte',           cat: 'matcha',     price: 5.2,  rating: 4.8, tag: 'Ceremonial',    img: '/__l5e/assets-v1/2fe8bea7-9441-4642-a8dc-5ec42773d83e/matcha-latte.jpg',         desc: 'Stone-ground ceremonial matcha whisked with steamed milk.' },
+    { id: 15, name: 'Iced Matcha',            cat: 'matcha',     price: 5.4,  rating: 4.7, tag: 'Cold',          img: '/__l5e/assets-v1/bc5f7f2a-bade-48ba-a574-62f10d629a79/iced-matcha.jpg',          desc: 'Matcha shaken with ice and milk. Vibrant green, gently sweet.' },
+    { id: 16, name: 'Matcha Cloud',           cat: 'matcha',     price: 5.8,  rating: 4.9, tag: 'Signature',     img: '/__l5e/assets-v1/55547524-b4e5-4219-a58e-71cc7c56a298/matcha-cloud.jpg',         desc: 'Matcha, espresso, brown sugar and cold foam. A dual-layered wonder.' },
+    { id: 17, name: 'Honey Lavender Latte',   cat: 'signature',  price: 6.2,  rating: 5.0, tag: "Barista's Choice", img: '/__l5e/assets-v1/78a42558-7a6a-405a-9dd3-94f96f26d5d5/honey-lavender-latte.jpg', desc: 'Wildflower honey, French lavender, double shot, oat milk.' },
+    { id: 18, name: 'Brown Sugar Shaken',     cat: 'signature',  price: 6.0,  rating: 4.9, tag: 'Hand-Shaken',   img: '/__l5e/assets-v1/f37e28bc-51b8-4486-9d73-aa1c3c134a3a/brown-sugar-shaken.jpg',   desc: 'Brown sugar syrup shaken with espresso and cinnamon. Frothy, cool.' },
+    { id: 19, name: 'Spiced Mocha',           cat: 'signature',  price: 6.4,  rating: 4.8, tag: 'Rich',          img: '/__l5e/assets-v1/3277a2e9-45fb-4e3e-b06a-80f46f59a84d/spiced-mocha.jpg',         desc: '70% dark chocolate, espresso, a whisper of chili, steamed milk.' },
+    { id: 20, name: 'House Blend Pour Over',  cat: 'signature',  price: 5.5,  rating: 4.9, tag: 'Slow Brew',     img: '/__l5e/assets-v1/80955e87-2c19-4e43-bb91-2800b45fde7f/pour-over.jpg',            desc: 'Single origin, hand-poured bloom by bloom. Three minutes of patience.' },
+    { id: 21, name: 'Butter Croissant',       cat: 'desserts',   price: 3.8,  rating: 4.9, tag: 'Baked Daily',   img: '/__l5e/assets-v1/e1848c12-38cd-41bb-b2d1-cefb64739697/croissant.jpg',            desc: '72-hour laminated dough, baked until shatteringly flaky.' },
+    { id: 22, name: 'Pain au Chocolat',       cat: 'desserts',   price: 4.2,  rating: 4.8, tag: 'Two Bars',      img: '/__l5e/assets-v1/3c3e91e6-1065-4b78-b079-74fac06c1ff5/pain-chocolat.jpg',        desc: 'Same croissant dough, two batons of 70% dark chocolate inside.' },
+    { id: 23, name: 'Almond Danish',          cat: 'desserts',   price: 4.5,  rating: 4.7, tag: 'Frangipane',    img: '/__l5e/assets-v1/3ac94c93-d1a3-42c5-8330-f7df5282e023/almond-danish.jpg',        desc: 'Frangipane cream, toasted almonds, light glaze. French-style.' },
+    { id: 24, name: 'Tiramisu',               cat: 'desserts',   price: 6.0,  rating: 4.9, tag: 'House-Made',    img: '/__l5e/assets-v1/87ed9fec-ceee-4cb9-8447-1b73df53fbd9/tiramisu.jpg',             desc: 'Espresso-soaked ladyfingers, mascarpone, dark cocoa dust.' },
   ];
 
   const CATS = [
@@ -221,6 +221,43 @@
     { id: 'desserts', label: 'Desserts' },
   ];
 
+
+  const C={esp:'#3b1f12',milk:'#f3e9dc',foam:'#fffaf2',water:'#8a5a3b',ice:'#d9eef5',choc:'#4a2615',car:'#c98a3a',van:'#efd9a7',haz:'#a8743f',chai:'#b98557',mat:'#7fa548',matl:'#b8d48c',hon:'#e3b23c',lav:'#b9a3d6',bs:'#8b5a2b',cream:'#fff6e6',butter:'#e8b65a',dough:'#dcb07a',alm:'#d9b98a',masc:'#f5ead2',cocoa:'#6b3d22'};
+  const INGREDIENTS={
+    1:[['Espresso',C.esp,70],['Crema',C.car,30]],
+    2:[['Espresso ×2',C.esp,80],['Crema',C.car,20]],
+    3:[['Hot water',C.water,60],['Espresso ×2',C.esp,40]],
+    4:[['Espresso',C.esp,70],['Milk foam',C.foam,30]],
+    5:[['Espresso',C.esp,33],['Steamed milk',C.milk,33],['Foam & cocoa',C.foam,34]],
+    6:[['Ice',C.ice,30],['Espresso',C.esp,30],['Cold foam',C.foam,40]],
+    7:[['Caramel',C.car,20],['Espresso',C.esp,30],['Steamed milk',C.milk,25],['Foam & sea salt',C.foam,25]],
+    8:[['Vanilla syrup',C.van,15],['Espresso ×2',C.esp,30],['Steamed milk',C.milk,55]],
+    9:[['Ice',C.ice,30],['Cold milk',C.milk,45],['Espresso',C.esp,25]],
+    10:[['Hazelnut praline',C.haz,20],['Espresso',C.esp,30],['Steamed milk',C.milk,35],['Cream',C.cream,15]],
+    11:[['Spiced black tea',C.chai,50],['Steamed milk',C.milk,40],['Cinnamon',C.car,10]],
+    12:[['Ristretto ×2',C.esp,55],['Microfoam',C.milk,45]],
+    13:[['Espresso',C.esp,50],['Warm milk',C.milk,50]],
+    14:[['Ceremonial matcha',C.mat,35],['Steamed milk',C.matl,65]],
+    15:[['Ice',C.ice,25],['Milk',C.milk,40],['Matcha',C.mat,35]],
+    16:[['Milk & ice',C.milk,30],['Matcha',C.mat,25],['Brown sugar',C.bs,15],['Espresso',C.esp,15],['Cold foam',C.foam,15]],
+    17:[['Wildflower honey',C.hon,15],['Lavender',C.lav,10],['Espresso ×2',C.esp,30],['Oat milk',C.milk,45]],
+    18:[['Brown sugar syrup',C.bs,20],['Ice',C.ice,25],['Espresso',C.esp,35],['Froth & cinnamon',C.foam,20]],
+    19:[['Dark chocolate',C.choc,25],['Espresso',C.esp,25],['Chili',C.car,5],['Steamed milk',C.milk,45]],
+    20:[['Hand-poured coffee',C.water,100]],
+    21:[['Laminated dough',C.dough,60],['French butter',C.butter,40]],
+    22:[['Croissant dough',C.dough,55],['Butter',C.butter,20],['70% chocolate',C.choc,25]],
+    23:[['Danish dough',C.dough,45],['Frangipane',C.van,30],['Toasted almonds',C.alm,25]],
+    24:[['Espresso ladyfingers',C.haz,40],['Mascarpone',C.masc,45],['Cocoa dust',C.cocoa,15]]
+  };
+  const isFood=p=>p.cat==='desserts';
+  const vesselHTML=p=>{const L=INGREDIENTS[p.id]||[];return `
+    <div class="ing-panel" aria-hidden="true">
+      <div class="ing-vessel ${isFood(p)?'is-plate':''} ${/iced|cold|shaken|cloud/i.test(p.name+p.tag)?'is-glass':''}">
+        <div class="ing-fill">${L.map((l,j)=>`<span class="ing-layer" style="--h:${l[2]}%;--c:${l[1]};--j:${j}"></span>`).join('')}</div>
+        <span class="ing-stream"></span>
+      </div>
+      <ul class="ing-list">${L.map((l,j)=>`<li style="--j:${j}"><i style="background:${l[1]}"></i>${l[0]}</li>`).join('')}</ul>
+    </div>`;};
   const filtersEl = $('#menuFilters');
   const gridEl = $('#menuGrid');
 
@@ -230,6 +267,7 @@
       <article class="menu-card" style="--i:${i}">
         <div class="menu-card-img">
           <span class="menu-card-tag">${p.tag}</span>
+          ${vesselHTML(p)}
           <img src="${p.img}" alt="${p.name}" loading="lazy" width="800" height="600"
                onerror="this.style.display='none';this.parentNode.classList.add('img-missing')">
         </div>
@@ -241,6 +279,7 @@
           <p class="menu-card-desc">${p.desc}</p>
           <div class="menu-card-foot">
             <span class="menu-card-rating"><b>★</b> ${p.rating} · <span class="menu-card-cat">${CATS.find(c => c.id === p.cat).label}</span></span>
+            <button type="button" class="ing-btn" aria-label="Show ingredients of ${p.name}">What's inside</button>
           </div>
         </div>
       </article>`).join('');
@@ -258,6 +297,12 @@
       renderMenu(btn.dataset.cat);
     });
     renderMenu('all');
+    gridEl.addEventListener('click', e => {
+      const b = e.target.closest('.ing-btn'); if (!b) return;
+      const card = b.closest('.menu-card'); const on = !card.classList.contains('show-ing');
+      card.classList.remove('show-ing'); void card.offsetWidth; card.classList.toggle('show-ing', on);
+      b.textContent = on ? 'Hide' : "What's inside";
+    });
   }
 
   /* ---------- Testimonials slider ---------- */
