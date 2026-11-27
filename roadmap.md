@@ -1,10 +1,5 @@
 # نقشه‌ی راه
 
-- [ ] اتصال حساب گیت‌هاب (کارت اتصال)
-- [ ] فرستادن فایل‌های تازه به مخزن `MelikaBahmanabadi/cafe`:
-  - `assets/videos/hero-coffee-loop.mp4`
-  - `assets/images/hero/hero-poster.webp`
-  - `assets/images/gallery/cafe-interior.jpg`
-  - `assets/images/gallery/latte-art.jpg`
-  - `index.html` (تغییر عکس گالری)
-- [ ] بررسی اینکه فایل‌ها در مخزن نشسته‌اند
+- [x] سایت کافه در لاوبل بالا آمد و مدرن‌تر شد (ویدیوی بالای صفحه + عکس‌های تازه)
+- [ ] فرستادن تغییرات به مخزن گیت‌هاب — فعلاً متوقف؛ کاربر فعلاً سورس نمی‌خواهد
+- [ ] تغییرات جدیدی که کاربر می‌گوید
