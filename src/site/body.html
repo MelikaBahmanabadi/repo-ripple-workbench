@@ -209,7 +209,7 @@
           </div>
           <div class="visit-row">
             <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 7v5l3.2 2.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-            <div><h5>Hours</h5><p>Mon – Fri · 7:00 AM – 9:00 PM<br>Sat – Sun · 8:00 AM – 10:00 PM</p></div>
+            <div><h5>Hours <em class="open-now" id="openNow"><i></i><span>Open</span></em></h5><p>Mon – Fri · 7:00 AM – 9:00 PM<br>Sat – Sun · 8:00 AM – 10:00 PM</p></div>
           </div>
           <div class="visit-row">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
@@ -299,7 +299,7 @@
     </nav>
     <nav class="footer-col" aria-label="Footer visit">
       <h6>Visit</h6>
-      <a href="#visit">Find Us</a><a href="#visit">Hours</a><a href="mailto:reservations@emberandoak.co">Reservations</a><a href="#testimonials">Reviews</a>
+      <a href="#visit">Find Us</a><a href="#visit">Hours</a><a href="#reserve" data-reserve>Reservations</a><a href="#testimonials">Reviews</a>
     </nav>
     <div class="footer-col footer-hours">
       <h6>Hours</h6>
@@ -319,10 +319,12 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2025 Ember &amp; Oak Coffee Co. · Crafted with care in Portland.</p>
+    <p>© <span id="year">2026</span> Ember &amp; Oak Coffee Co. · Crafted with care in Portland.</p>
     <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
   </div>
 </footer>
+
+<button type="button" class="to-top" id="toTop" aria-label="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Gallery image" hidden>

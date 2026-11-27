@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiPublicNewsletterRouteImport } from './routes/api/public/newsletter'
 import { Route as ApiPublicReservationsRouteImport } from './routes/api/public/reservations'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicNewsletterRoute = ApiPublicNewsletterRouteImport.update({
+  id: '/api/public/newsletter',
+  path: '/api/public/newsletter',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiPublicReservationsRoute = ApiPublicReservationsRouteImport.update({
@@ -25,27 +31,31 @@ const ApiPublicReservationsRoute = ApiPublicReservationsRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/public/newsletter': typeof ApiPublicNewsletterRoute
   '/api/public/reservations': typeof ApiPublicReservationsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/public/newsletter': typeof ApiPublicNewsletterRoute
   '/api/public/reservations': typeof ApiPublicReservationsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/public/newsletter': typeof ApiPublicNewsletterRoute
   '/api/public/reservations': typeof ApiPublicReservationsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/api/public/reservations'
+  fullPaths: '/' | '/api/public/newsletter' | '/api/public/reservations'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/public/reservations'
-  id: '__root__' | '/' | '/api/public/reservations'
+  to: '/' | '/api/public/newsletter' | '/api/public/reservations'
+  id: '__root__' | '/' | '/api/public/newsletter' | '/api/public/reservations'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiPublicNewsletterRoute: typeof ApiPublicNewsletterRoute
   ApiPublicReservationsRoute: typeof ApiPublicReservationsRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/newsletter': {
+      id: '/api/public/newsletter'
+      path: '/api/public/newsletter'
+      fullPath: '/api/public/newsletter'
+      preLoaderRoute: typeof ApiPublicNewsletterRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/public/reservations': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiPublicNewsletterRoute: ApiPublicNewsletterRoute,
   ApiPublicReservationsRoute: ApiPublicReservationsRoute,
 }
 export const routeTree = rootRouteImport

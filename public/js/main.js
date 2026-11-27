@@ -381,11 +381,17 @@
   /* ---------- Newsletter ---------- */
   const newsForm = $('#newsForm');
   if (newsForm) {
-    newsForm.addEventListener('submit', e => {
+    newsForm.addEventListener('submit', async e => {
       e.preventDefault();
-      $('#newsNote').hidden = false;
-      newsForm.reset();
-      toast('Thanks — you are on the list.');
+      const input = $('input', newsForm), btn = $('button', newsForm);
+      btn.disabled = true;
+      try {
+        const r = await fetch('/api/public/newsletter', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: input.value }) });
+        const j = await r.json();
+        if (!r.ok) throw new Error(j.error);
+        $('#newsNote').hidden = false; newsForm.reset(); toast('Thanks — you are on the list.');
+      } catch (x) { toast(x.message || 'Could not subscribe. Please try again.'); }
+      finally { btn.disabled = false; }
     });
   }
 
@@ -457,4 +463,23 @@
     } catch (x) { err.textContent = x.message || 'Could not send. Please try again.'; }
     finally { btn.disabled = false; btn.textContent = 'Confirm reservation'; }
   });
+})();
+
+/* ---------- Open-now badge, year, back to top ---------- */
+(() => {
+  const el = document.getElementById('openNow');
+  if (el) {
+    const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
+    const d = now.getDay(), h = now.getHours() + now.getMinutes() / 60;
+    const [o, c] = (d === 0 || d === 6) ? [8, 22] : [7, 21];
+    const open = h >= o && h < c;
+    el.classList.toggle('is-open', open);
+    el.querySelector('span').textContent = open ? `Open now · until ${c - 12} PM` : `Closed · opens ${o} AM`;
+  }
+  const y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
+  const top = document.getElementById('toTop');
+  if (top) {
+    window.addEventListener('scroll', () => top.classList.toggle('show', scrollY > 900), { passive: true });
+    top.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
+  }
 })();
