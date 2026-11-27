@@ -12,6 +12,9 @@ const write = (p, value) => {
 
 const html = read("src/site/body.html");
 let js = read("public/js/main.js");
+// The source stylesheet references font files that are not part of the exported asset bundle.
+// Load the same families from Google Fonts and remove broken local @font-face declarations.
+const css = read("public/css/style.css").replace(/@font-face\\s*\\{[^}]*\\}/g, "");
 
 // Use the checked-in, optimized local image library instead of private Lovable asset URLs.
 const imageMap = {
@@ -55,7 +58,7 @@ const document = `<!doctype html>
   <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..700&family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
@@ -68,7 +71,7 @@ write("index.html", document);
 write("404.html", document);
 mkdirSync(join(out, "css"), { recursive: true });
 mkdirSync(join(out, "js"), { recursive: true });
-cpSync(join(root, "public/css/style.css"), join(out, "css/style.css"));
+write("css/style.css", css);
 cpSync(join(root, "public/assets"), join(out, "assets"), { recursive: true });
 write("js/main.js", js);
 write(".nojekyll", "");
