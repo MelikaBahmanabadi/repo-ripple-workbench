@@ -14,7 +14,7 @@ const html = read("src/site/body.html");
 let js = read("public/js/main.js");
 // The source stylesheet references font files that are not part of the exported asset bundle.
 // Load the same families from Google Fonts and remove broken local @font-face declarations.
-const css = read("public/css/style.css").replace(/@font-face\\s*\\{[^}]*\\}/g, "");
+const css = read("public/css/style.css").replace(/@font-face\s*\{[^}]*\}/g, "");
 
 // Use the checked-in, optimized local image library instead of private Lovable asset URLs.
 const imageMap = {
